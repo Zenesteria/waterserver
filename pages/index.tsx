@@ -2,6 +2,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
+import { FaLink, FaSchool, FaUser } from 'react-icons/fa'
+import { Chart, DataCard, EventMessageListItem, Status, Verify } from '@/components'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,7 +16,95 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="w-full h-fit min-h-screen bg-slate-200"></div>
+      <div className="w-full h-fit min-h-screen bg-blue-300 gradOne px-10 py-5 font-[raleway]">
+        {/* Top bar */}
+        <div className="w-full flex items-center justify-between">
+          <h1 className="font-bold" style={{ fontSize: "calc(1rem + 0.5vw)" }}>
+            WMS
+          </h1>
+
+          <FaUser />
+        </div>
+        {/* Top Bar */}
+        <div className="flex w-full h-fit min-h-[30vh] flex-wrap my-5">
+          <div className="flex flex-col flex-1 mx-2 min-w-[250px] min-h-[30vh] h-fit p-5 bg-[rgba(255,255,255,0.5)] rounded-3xl drop-shadow-lg">
+            <h1
+              className="font-semibold tracking-wide mb-3"
+              style={{ fontSize: "calc(0.7rem + 0.5vw)" }}
+            >
+              Location: Kaduna-NG
+            </h1>
+
+            <Status />
+            <Verify/>
+          </div>
+          <div className="flex flex-col flex-1 mx-2 min-w-[250px] min-h-[30vh] h-fit bg-[rgba(255,255,255,0.5)] rounded-3xl drop-shadow-lg p-5">
+            <h1 className="font-semibold tracking-wide mb-3">Recent Events</h1>
+            <div className="">
+              {/* <EventMessageListItem /> */}
+            </div>
+          </div>
+          <div className="flex flex-col flex-1 mx-2 min-w-[250px] min-h-[30vh] h-fit bg-[rgba(255,255,255,0.5)] rounded-3xl drop-shadow-lg p-5">
+            <h1 className="font-semibold tracking-wide mb-3">Institution</h1>
+            <div className="flex w-full">
+              <div
+                className="flex-[0.4] aspect-square bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: "url('/img/afit_logo.png')" }}
+              ></div>
+              <div
+                className="flex-1 flex flex-col justify-center"
+                style={{ fontSize: "calc(0.6rem + 0.25vw)" }}
+              >
+                <div className="flex items-center">
+                  <FaUser />
+                  <p className="mx-2">Adetola Oluwatise - AFIT/EEE/18/0003</p>
+                </div>
+
+                <div className="flex items-center my-2">
+                  <FaUser />
+                  <p className="mx-2">Prof. Nurudeen (Supervisor)</p>
+                </div>
+
+                <div className="flex items-center my-2">
+                  <FaSchool />
+                  <p className="mx-2">
+                    Airforce Institute of Technology <br /> Electrical Electronics Engineering Dept.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Stats */}
+        <div className="w-full py-3 px-5 h-fit min-h-[55vh] bg-[rgba(255,255,255,0.5)] rounded-3xl drop-shadow-xl">
+            <h1 className=' uppercase font-semibold tracking-wider' style={{fontSize:'calc(0.6rem + 0.5vw)'}}>
+              Statistics
+            </h1>
+            <div className="flex flex-wrap w-full h-[60vh]">
+                <div className="flex-1 min-w-[300px] mr-2">
+                  <Chart/>
+                </div>
+                <div className="flex-[0.5] min-w-[300px]">
+                    <DataCard
+                      theme={0}
+                      title='Temperature'
+                      val={0}
+                    />
+                    <DataCard
+                      theme={1}
+                      title='Turbidity'
+                      val={0}
+                    />
+                    <DataCard
+                      theme={2}
+                      title='Total Dissolved Solids'
+                      val={0}
+                    />
+                </div>
+            </div>
+        </div>
+      </div>
     </>
-  )
+  );
 }

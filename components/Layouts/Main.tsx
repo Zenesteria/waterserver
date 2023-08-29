@@ -8,7 +8,7 @@ interface compProps{
 export default function Main({children}:compProps) {
   return (
     <>
-        <Navbar/>
+        {/* <Navbar/> */}
       {children}
       <Footer/>
     </>
