@@ -49,6 +49,6 @@ export const data = {
 
 
 export default function Chart() {
-  return <Bar options={options} data={data} />;
+  return <Bar options={{...options}} data={data} title="k" />;
 }
 

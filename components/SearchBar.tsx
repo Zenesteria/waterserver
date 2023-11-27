@@ -3,12 +3,6 @@ import {useState,useEffect} from 'react'
 
 export default function SearchBar() {
     const [active, setActive] = useState(false);
-    useEffect(() => {
-        setInterval(() => {
-            const elem = document.getElementById("searchBar");
-            setActive(elem == document.activeElement);
-        },100)
-    })
 
   return (
     <div className="bg-slate-100 flex items-center px-4 text-slate-400 h-[90%] max-w-[500px] flex-[0.7] rounded-full">

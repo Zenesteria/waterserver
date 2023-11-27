@@ -13,6 +13,7 @@ import {
 import VerifyIp from '@/services/VerifyEspIp';
 import {useDispatch} from 'react-redux'
 import { setOnline } from '@/redux/infoSlice';
+import getData from '@/services/getData';
 
 
 
@@ -56,6 +57,7 @@ export default function Verify() {
                         IP:values.ip,
                         status:1
                     }))
+                    // const getSensorReadings = await getData();
                     setSubmitting(false);
                     onClose();
                 }

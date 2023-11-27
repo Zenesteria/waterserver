@@ -1,13 +1,56 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
 import { FaLink, FaSchool, FaUser } from 'react-icons/fa'
 import { Chart, DataCard, EventMessageListItem, Status, Verify } from '@/components'
+import { useEffect, useState } from 'react';
 
-const inter = Inter({ subsets: ['latin'] })
+
 
 export default function Home() {
+  const [wqi,setWQI] = useState(0)
+  const [temp,setTemp] = useState(0)
+  const [turbidity,setTurbidity] = useState(0)
+  const [tds,setTDS] = useState(0)
+  function getRandomValue(max:number,min:number) {
+    // Generate a random decimal between 0 (inclusive) and 1 (exclusive)
+    const randomDecimal = Math.random();
+
+    // Scale and shift the random decimal to fit within the range of 2 to 5
+    const minValue = min;
+    const maxValue = max;
+    const randomValue = minValue + randomDecimal * (maxValue - minValue);
+
+    return Math.floor(randomValue);
+  }
+  useEffect(() => {
+    console.log('TestOut')
+      let timeint = setInterval(() => {
+        console.log('Test')
+        setWQI(getRandomValue(2,5))
+        console.log(wqi)
+      },10000)
+      let timetds = setInterval(() => {
+        console.log('Test')
+        setTDS(getRandomValue(50,500))
+        console.log(wqi)
+      },8000)
+      let timetemp = setInterval(() => {
+        console.log('Test')
+        setTemp(getRandomValue(15,28))
+        console.log(wqi)
+      },1000)
+      let timeturb = setInterval(() => {
+        console.log('Test')
+        setTurbidity(getRandomValue(300,1000))
+        console.log(wqi)
+      },4000)
+
+      return () => {
+        clearInterval(timeint);
+        clearInterval(timetemp);
+        clearInterval(timetds);
+        clearInterval(timeturb);
+      }
+  },[wqi])
   return (
     <>
       <Head>
@@ -17,14 +60,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="w-full h-fit min-h-screen bg-blue-300 gradOne px-10 py-5 font-[raleway]">
-        {/* Top bar */}
-        <div className="w-full flex items-center justify-between">
-          <h1 className="font-bold" style={{ fontSize: "calc(1rem + 0.5vw)" }}>
-            WMS
-          </h1>
-
-          <FaUser />
-        </div>
         {/* Top Bar */}
         <div className="flex w-full h-fit min-h-[30vh] flex-wrap my-5">
           <div className="flex flex-col flex-1 mx-2 min-w-[250px] min-h-[30vh] h-fit p-5 bg-[rgba(255,255,255,0.5)] rounded-3xl drop-shadow-lg">
@@ -38,9 +73,13 @@ export default function Home() {
             <Status />
             <Verify/>
           </div>
-          <div className="flex flex-col flex-1 mx-2 min-w-[250px] min-h-[30vh] h-fit bg-[rgba(255,255,255,0.5)] rounded-3xl drop-shadow-lg p-5">
-            <h1 className="font-semibold tracking-wide mb-3">Recent Events</h1>
+          <div className="flex flex-col flex-1 mx-2 min-w-[250px] justify-center min-h-[30vh] h-fit bg-[rgba(255,255,255,0.5)] rounded-3xl drop-shadow-lg p-5">
             <div className="">
+              <DataCard
+                val={wqi}
+                title='Water Quality Index'
+                theme={3}
+              />
               {/* <EventMessageListItem /> */}
             </div>
           </div>
@@ -89,17 +128,17 @@ export default function Home() {
                     <DataCard
                       theme={0}
                       title='Temperature'
-                      val={0}
+                      val={temp}
                     />
                     <DataCard
                       theme={1}
                       title='Turbidity'
-                      val={0}
+                      val={turbidity}
                     />
                     <DataCard
                       theme={2}
                       title='Total Dissolved Solids'
-                      val={0}
+                      val={tds}
                     />
                 </div>
             </div>

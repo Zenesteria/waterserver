@@ -6,7 +6,7 @@ interface compProps{
 
 }
 
-export default function index({}:compProps) {
+export default function Index({}:compProps) {
   return (
     <div className="w-full h-[9vh] bg-white flex items-center justify-center p-2">
       <div className="w-[90%] h-full min-w-[330px] flex items-center justify-around">
