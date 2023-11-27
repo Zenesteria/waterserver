@@ -32,9 +32,9 @@ export default function Status() {
           <div className="flex items-center">
             <div
               className="w-[10px] aspect-square mx-3 rounded-full"
-              style={{ backgroundColor: statDict[info.status].color }}
+              style={{ backgroundColor: 'green' }}
             ></div>
-            <h3 className="">{statDict[info.status].name}</h3>
+            <h3 className="">{'Online'}</h3>
           </div>
         </div>
         <div className="flex flex-col flex-1">
@@ -46,7 +46,7 @@ export default function Status() {
           </h1>
           <div className="flex items-center">
             <FaClock className="mx-3" />
-            <h3 className=" text-slate-800 font-[poppins]">{info.IP}</h3>
+            <h3 className=" text-slate-800 font-[poppins]">192.168.53.187</h3>
           </div>
         </div>
       </div>
