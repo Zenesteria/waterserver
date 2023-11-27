@@ -26,9 +26,12 @@ export default function Home() {
     const socket = io("https://hexametry.onrender.com");
     // axios.get("/api/feed")
     // Listen for incoming messages
-    socket.on("response", (temp) => {
-      
-      console.log(temp);
+    socket.on("response", (data) => {
+      setWQI(data.wqi)
+      setTemp(data.temperature)
+      setTDS(data.tds)
+      setTurbidity(data.turbidity)
+      console.log(data);
     });
   },[wqi])
   return (
