@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { FaLink, FaSchool, FaUser } from 'react-icons/fa'
 import { Chart, DataCard, EventMessageListItem, Status, Verify } from '@/components'
 import { useEffect, useState } from 'react';
+import io from "socket.io-client";
 
 
 
@@ -22,34 +23,13 @@ export default function Home() {
     return Math.floor(randomValue);
   }
   useEffect(() => {
-    console.log('TestOut')
-      let timeint = setInterval(() => {
-        console.log('Test')
-        setWQI(getRandomValue(2,5))
-        console.log(wqi)
-      },10000)
-      let timetds = setInterval(() => {
-        console.log('Test')
-        setTDS(getRandomValue(50,500))
-        console.log(wqi)
-      },8000)
-      let timetemp = setInterval(() => {
-        console.log('Test')
-        setTemp(getRandomValue(15,28))
-        console.log(wqi)
-      },1000)
-      let timeturb = setInterval(() => {
-        console.log('Test')
-        setTurbidity(getRandomValue(300,1000))
-        console.log(wqi)
-      },4000)
-
-      return () => {
-        clearInterval(timeint);
-        clearInterval(timetemp);
-        clearInterval(timetds);
-        clearInterval(timeturb);
-      }
+    const socket = io("https://hexametry.onrender.com");
+    // axios.get("/api/feed")
+    // Listen for incoming messages
+    socket.on("response", (temp) => {
+      
+      console.log(temp);
+    });
   },[wqi])
   return (
     <>
